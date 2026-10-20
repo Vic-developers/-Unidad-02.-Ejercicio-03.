@@ -1,0 +1,21 @@
+{
+  "rows": 5572,
+  "sha256_zip": "1587ea43e58e82b14ff1f5425c88e17f8496bfcdb67a583dbff9eefaf9963ce3",
+  "missing_required": 0,
+  "empty_text": 0,
+  "duplicate_rows_exact": 403,
+  "duplicate_rows_normalized": 415,
+  "conflicting_duplicate_groups": 0,
+  "class_counts": {
+    "ham": 4825,
+    "spam": 747
+  },
+  "message_length_median": 62.0,
+  "conflicting_rows_removed": 0,
+  "duplicate_rows_removed": 415,
+  "clean_rows": 5157,
+  "train_rows": 3867,
+  "test_rows": 1290,
+  "test_fraction": 0.25,
+  "random_state": 42
+}

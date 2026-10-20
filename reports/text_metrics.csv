@@ -1,0 +1,4 @@
+model,f1_macro,accuracy
+logistic_regression,0.959727,0.982171
+complement_nb,0.953372,0.979845
+dummy,0.466722,0.875194

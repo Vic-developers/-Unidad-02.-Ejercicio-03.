@@ -1,0 +1,2 @@
+name,url,license,language,rows,target,decision
+SMS Spam Collection,https://archive.ics.uci.edu/dataset/228/sms+spam+collection,CC BY 4.0,English,5572,ham/spam,selected
