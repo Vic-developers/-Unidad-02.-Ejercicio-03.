@@ -5,6 +5,8 @@ Proyecto reproducible de detección de SMS no deseados con el corpus SMS Spam Co
 Autor: Victor Elvis Lorenzo  
 Repositorio de entrega: <https://github.com/Vic-developers/-Unidad-02.-Ejercicio-03..>
 
+Informe editable en Word: [Entrega_Ejercicio_03.docx](Entrega_Ejercicio_03.docx). El PDF también está disponible en la raíz del repositorio.
+
 ## Resultados de esta ejecución
 
 Se ejecutó la comparación con la descarga UCI incluida en `data/raw/`. La colección contiene 5,572 mensajes: 4,825 ham y 747 spam. Se encontraron 403 duplicados exactos y 12 duplicados adicionales al normalizar mayúsculas y espacios; no hubo etiquetas conflictivas. Para evitar fuga, las 415 repeticiones se eliminaron **antes** de separar los datos. La partición estratificada reservó 25% para prueba (semilla 42).
