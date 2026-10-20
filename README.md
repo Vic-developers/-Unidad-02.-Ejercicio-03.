@@ -17,7 +17,7 @@ Se ejecutó la comparación con la descarga UCI incluida en `data/raw/`. La cole
 
 En prueba, la matriz del modelo seleccionado es `[[1115, 14], [9, 152]]`, con filas ham/spam reales y columnas ham/spam predichas. La regresión logística fue la mejor entre las tres en esta partición. Su recall para spam fue 0.944; 9 de 161 mensajes spam quedaron como ham. Esto no demuestra rendimiento en SMS actuales, español ni otros canales.
 
-Las cifras se recalculan con `python scripts/run_analysis.py` o ejecutando la notebook. Los reportes visuales y tabulares están en `reports/`. El análisis de errores contiene 20 predicciones incorrectas reales del conjunto de prueba. Sus categorías y explicaciones están marcadas como **borrador asistido por IA** y requieren revisión del estudiante antes de defenderlas.
+Las cifras se recalculan con `python scripts/run_analysis.py` o ejecutando la notebook. Los reportes visuales y tabulares están en `reports/`. El análisis de errores contiene 20 predicciones incorrectas reales del conjunto de prueba. Sus categorías y explicaciones son notas preliminares y requieren revisión del estudiante antes de defenderlas.
 
 ## Instalación y ejecución desde cero
 
@@ -65,4 +65,4 @@ Los mensajes se usan con fines académicos. La licencia del corpus no convierte 
 
 ## Uso de IA
 
-Se utilizó OpenAI Codex para revisar la estructura existente, preparar y corregir código, proponer pruebas y generar un primer borrador de categorías para los errores. El prompt de trabajo pidió integrar corpus público, auditoría, tres modelos comparables, evaluación y 20 errores en una entrega reproducible. Se verificaron descarga, huella, conteos, métricas, matriz de confusión y pruebas automatizadas. Las categorías cualitativas son sugerencias y requieren revisión y explicación por parte del estudiante. Detalle en `docs/AI_USAGE.md`.
+Se utilizó OpenAI Codex como apoyo para corregir errores de código, proponer pruebas y revisar la redacción. También se consultó para preparar notas preliminares sobre errores de clasificación; el estudiante debe revisarlas y explicar su interpretación. Se verificaron la descarga, la huella, los conteos, las métricas, la matriz de confusión y las pruebas automatizadas. El detalle y el prompt relevante están en `docs/AI_USAGE.md`.

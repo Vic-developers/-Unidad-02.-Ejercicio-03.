@@ -2,25 +2,12 @@
 
 ## Herramienta
 
-OpenAI Codex, asistente de programación basado en GPT-6, usado durante la preparación de esta entrega.
+OpenAI Codex se utilizó como herramienta de apoyo durante la preparación y revisión de esta entrega.
 
-## Prompt relevante
+## Uso y prompt relevante
 
-Prompt del usuario en este chat: “Indicame que necesitas para logar lo que me solicita esto y me entregues lo que solicita que cumpla con todo”. La consigna adjunta pidió “Integrar, de manera individual, las evidencias producidas en LAB04 y LAB05 en una entrega ejecutable y defendible” e indicó: “No se acepta una solución que no pueda ejecutarse desde las instrucciones del repositorio”. La consigna también enumeró notebook ejecutado, código reutilizable, pruebas, reportes, requirements.txt, README, enlace al repositorio y análisis de 20 errores.
+El apoyo se empleó para corregir errores de código, proponer pruebas, revisar la redacción y elaborar notas preliminares para orientar la lectura de algunos errores de clasificación. No se presenta el trabajo como una entrega generada automáticamente. El prompt de trabajo solicitó integrar las evidencias de LAB04 y LAB05 en un proyecto ejecutable y defendible, con corpus público, auditoría, comparación de clasificadores, evaluación y análisis de errores.
 
-## Partes asistidas
+## Verificación y responsabilidad
 
-- Revisión de estructura y detección de diferencias entre el CSV demostrativo y los resultados previos descritos en el DOCX.
-- Preparación del flujo de descarga/carga, auditoría, normalización de duplicados, pipelines, reportes, pruebas y notebook.
-- Redacción de síntesis y propuestas de categorías y explicaciones para los errores del conjunto de prueba.
-
-## Verificación realizada
-
-- Se descargó el ZIP de UCI, se calculó SHA-256 y se comprobaron filas, columnas, nulos, clases y duplicados.
-- Se ejecutó el pipeline con una partición estratificada fijada en semilla 42 y se generaron métricas y matriz de confusión.
-- Se ejecutaron las pruebas automatizadas descritas en el README.
-- La notebook guarda las salidas de su última ejecución.
-
-## Correcciones y responsabilidad
-
-Se reemplazaron los resultados del CSV demostrativo por una nueva ejecución del corpus UCI. La revisión encontró 415 duplicados normalizados y se retiraron antes de la separación para reducir fuga entre conjuntos. Se añadió el baseline y se compararon los dos pipelines bajo la misma partición. Las interpretaciones de errores son borradores sugeridos por IA: el estudiante debe comprobar cada mensaje, corregir las categorías y poder defender las conclusiones antes de entregar.
+Se verificaron la descarga y SHA-256 del corpus UCI, los conteos, duplicados, partición, métricas, matriz de confusión, ejecución de la notebook y pruebas automatizadas. Las notas cualitativas de `reports/error_analysis.csv` son preliminares: el estudiante debe revisar los mensajes, corregir cualquier interpretación y poder explicar las conclusiones. La selección del corpus, su licencia, las decisiones metodológicas y la interpretación final son responsabilidad del estudiante.

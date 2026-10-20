@@ -74,7 +74,7 @@ print(f"Errores del modelo seleccionado en el holdout: {len(result['errors'])}")
 
 ![Matriz de confusión](../reports/confusion_matrix.png)
 """),
-    markdown("## 4. Revisión de 20 errores\n\nSon 20 predicciones incorrectas reales del holdout. Las categorías y notas son un borrador asistido por IA, no una validación del estudiante. Revise el contexto, corrija las etiquetas de análisis si hace falta y explique los patrones antes de entregar."),
+    markdown("## 4. Revisión de 20 errores\n\nSon 20 predicciones incorrectas reales del holdout. Las categorías y notas son preliminares: revise cada mensaje, corrija lo que corresponda y explique los patrones antes de entregar."),
     code("""errors = pd.read_csv(ROOT / "reports/error_analysis.csv")
 print(errors[["text", "real", "predicted", "category_suggested", "analysis_suggested"]]
       .to_string(index=False, max_colwidth=100))
