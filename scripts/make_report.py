@@ -45,8 +45,8 @@ navy, teal, pale, grey, orange = (colors.HexColor("#202020"), colors.HexColor("#
                                   colors.HexColor("#eeeeee"), colors.HexColor("#555555"),
                                   colors.HexColor("#888888"))
 styles = getSampleStyleSheet()
-styles.add(ParagraphStyle(name="TitleES", fontName=BOLD, fontSize=24, leading=29,
-    textColor=navy, alignment=TA_LEFT, spaceAfter=7))
+styles.add(ParagraphStyle(name="TitleES", fontName=BOLD, fontSize=18, leading=36,
+    textColor=navy, alignment=TA_JUSTIFY, spaceAfter=7))
 styles.add(ParagraphStyle(name="SubES", fontName=BODY, fontSize=9, leading=18,
     textColor=grey, alignment=TA_JUSTIFY, spaceAfter=8))
 styles.add(ParagraphStyle(name="H2ES", fontName=BOLD, fontSize=12, leading=15,
@@ -84,7 +84,6 @@ doc = SimpleDocTemplate(str(OUT), pagesize=letter, rightMargin=0.58*inch,
 story = []
 
 story.append(P("Corpus público y clasificador de texto reproducible", "TitleES"))
-story.append(P("Autor: Victor Elvis Lorenzo &nbsp;&nbsp; | &nbsp;&nbsp; Ejecución: 20 octubre 2026", "SmallES"))
 story.append(P('Repositorio de entrega: <link href="https://github.com/Vic-developers/-Unidad-02.-Ejercicio-03.." color="#000000">github.com/Vic-developers/-Unidad-02.-Ejercicio-03..</link>.', "SmallES"))
 story.append(Spacer(1, 5))
 story.append(P("Pregunta", "H2ES"))
