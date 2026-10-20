@@ -21,7 +21,7 @@ def code(source: str) -> dict:
 cells = [
     markdown("""# Ejercicio 03 · Corpus público y clasificador de texto reproducible
 
-**Autor:** Victor E. Lorenzo  
+**Autor:** Victor Elvis Lorenzo  
 **Pregunta:** ¿cómo se compara TF-IDF con Complement Naive Bayes y regresión logística para distinguir SMS legítimos (ham) de spam sin compartir textos duplicados entre entrenamiento y prueba?
 
 Esta notebook carga el ZIP público de UCI, audita calidad y duplicados, separa antes de ajustar el vocabulario, compara tres modelos en el mismo holdout y registra errores. La descarga incluida permite repetirla sin red.

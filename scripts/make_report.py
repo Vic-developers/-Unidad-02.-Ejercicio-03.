@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 from reportlab.lib import colors
-from reportlab.lib.enums import TA_CENTER, TA_LEFT
+from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY, TA_LEFT
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
@@ -37,7 +37,10 @@ selected = str(metrics.iloc[0]["model"])
 selected_row = metrics.iloc[0]
 spam = class_metrics[class_metrics.label == "spam"].iloc[0]
 
-navy, teal, pale, grey, orange = colors.HexColor("#15324b"), colors.HexColor("#087e8b"), colors.HexColor("#edf4f7"), colors.HexColor("#50616d"), colors.HexColor("#f28c28")
+# El documento usa una paleta neutra; las figuras se conservan a color.
+navy, teal, pale, grey, orange = (colors.HexColor("#202020"), colors.HexColor("#303030"),
+                                  colors.HexColor("#eeeeee"), colors.HexColor("#555555"),
+                                  colors.HexColor("#888888"))
 styles = getSampleStyleSheet()
 styles.add(ParagraphStyle(name="TitleES", fontName=BOLD, fontSize=24, leading=29,
     textColor=navy, alignment=TA_LEFT, spaceAfter=7))
@@ -46,13 +49,13 @@ styles.add(ParagraphStyle(name="SubES", fontName=BODY, fontSize=9, leading=13,
 styles.add(ParagraphStyle(name="H2ES", fontName=BOLD, fontSize=12, leading=15,
     textColor=teal, spaceBefore=7, spaceAfter=4))
 styles.add(ParagraphStyle(name="BodyES", fontName=BODY, fontSize=9.1, leading=12.6,
-    textColor=navy, spaceAfter=4))
+    textColor=navy, alignment=TA_JUSTIFY, spaceAfter=4))
 styles.add(ParagraphStyle(name="SmallES", fontName=BODY, fontSize=7.8, leading=10.2,
-    textColor=grey, spaceAfter=2))
+    textColor=grey, alignment=TA_JUSTIFY, spaceAfter=2))
 styles.add(ParagraphStyle(name="CellES", fontName=BODY, fontSize=8.1, leading=10,
-    textColor=navy))
+    textColor=navy, alignment=TA_JUSTIFY))
 styles.add(ParagraphStyle(name="CellHeadES", fontName=BOLD, fontSize=8.1, leading=10,
-    textColor=colors.white))
+    textColor=colors.white, alignment=TA_JUSTIFY))
 styles.add(ParagraphStyle(name="KPI", fontName=BOLD, fontSize=15, leading=17,
     textColor=navy, alignment=TA_CENTER))
 styles.add(ParagraphStyle(name="KPIlabel", fontName=BODY, fontSize=7.3, leading=9,
@@ -63,7 +66,7 @@ def P(text: str, style: str = "BodyES") -> Paragraph:
 
 def footer(canvas, doc):
     canvas.saveState()
-    canvas.setStrokeColor(colors.HexColor("#d6e0e5"))
+    canvas.setStrokeColor(colors.HexColor("#bbbbbb"))
     canvas.line(0.55 * inch, 0.43 * inch, 7.95 * inch, 0.43 * inch)
     canvas.setFont(BODY, 7.5)
     canvas.setFillColor(grey)
@@ -74,13 +77,13 @@ def footer(canvas, doc):
 doc = SimpleDocTemplate(str(OUT), pagesize=letter, rightMargin=0.58*inch,
     leftMargin=0.58*inch, topMargin=0.5*inch, bottomMargin=0.58*inch,
     title="Ejercicio 03 - Corpus público y clasificador reproducible",
-    author="Victor E. Lorenzo")
+    author="Victor Elvis Lorenzo")
 story = []
 
 story.append(P("Ejercicio 03", "TitleES"))
 story.append(P("Corpus público y clasificador de texto reproducible", "SubES"))
-story.append(P("Autor: Victor E. Lorenzo &nbsp;&nbsp; | &nbsp;&nbsp; Ejecución: 20 octubre 2026", "SmallES"))
-story.append(P('Repositorio de entrega: <link href="https://github.com/Vic-developers/-Unidad-02.-Ejercicio-03.." color="#087e8b">github.com/Vic-developers/-Unidad-02.-Ejercicio-03..</link>.', "SmallES"))
+story.append(P("Autor: Victor Elvis Lorenzo &nbsp;&nbsp; | &nbsp;&nbsp; Ejecución: 20 octubre 2026", "SmallES"))
+story.append(P('Repositorio de entrega: <link href="https://github.com/Vic-developers/-Unidad-02.-Ejercicio-03.." color="#000000">github.com/Vic-developers/-Unidad-02.-Ejercicio-03..</link>.', "SmallES"))
 story.append(Spacer(1, 5))
 story.append(P("Pregunta", "H2ES"))
 story.append(P("¿Cómo se comparan TF-IDF con Complement Naive Bayes y regresión logística para clasificar SMS legítimos (ham) y spam cuando se retiran textos duplicados antes de separar entrenamiento y prueba?", "BodyES"))
@@ -88,11 +91,11 @@ story.append(P("¿Cómo se comparan TF-IDF con Complement Naive Bayes y regresi�
 kpis = [[P("5,572", "KPI"), P("415", "KPI"), P("3,867 / 1,290", "KPI"), P(f"{selected_row['f1_macro']:.3f}", "KPI")],
         [P("mensajes auditados", "KPIlabel"), P("repeticiones retiradas", "KPIlabel"), P("entrenamiento / prueba", "KPIlabel"), P("F1 macro del mejor", "KPIlabel")]]
 table = Table(kpis, colWidths=[1.8*inch]*4, rowHeights=[0.35*inch,0.3*inch])
-table.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,-1),pale), ("BOX",(0,0),(-1,-1),0.5,colors.HexColor("#d6e0e5")), ("INNERGRID",(0,0),(-1,-1),0.35,colors.HexColor("#d6e0e5")), ("VALIGN",(0,0),(-1,-1),"MIDDLE"), ("TOPPADDING",(0,0),(-1,-1),4), ("BOTTOMPADDING",(0,0),(-1,-1),4)]))
+table.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,-1),pale), ("BOX",(0,0),(-1,-1),0.5,colors.HexColor("#bbbbbb")), ("INNERGRID",(0,0),(-1,-1),0.35,colors.HexColor("#bbbbbb")), ("VALIGN",(0,0),(-1,-1),"MIDDLE"), ("TOPPADDING",(0,0),(-1,-1),4), ("BOTTOMPADDING",(0,0),(-1,-1),4)]))
 story.extend([table, Spacer(1, 6)])
 
 story.append(P("Corpus y decisiones", "H2ES"))
-story.append(P('SMS Spam Collection, UCI Machine Learning Repository, DOI <link href="https://doi.org/10.24432/C5CC84" color="#087e8b">10.24432/C5CC84</link>, licencia CC BY 4.0. El ZIP y su huella SHA-256 se incluyen en la entrega. La colección contiene mensajes en inglés con etiquetas ham/spam.', "BodyES"))
+story.append(P('SMS Spam Collection, UCI Machine Learning Repository, DOI <link href="https://doi.org/10.24432/C5CC84" color="#000000">10.24432/C5CC84</link>, licencia CC BY 4.0. El ZIP y su huella SHA-256 se incluyen en la entrega. La colección contiene mensajes en inglés con etiquetas ham/spam.', "BodyES"))
 story.append(P(f"Distribución: 4,825 ham y 747 spam. Sin faltantes ni etiquetas en conflicto. Se detectaron {audit['duplicate_rows_exact']} duplicados exactos y 12 coincidencias adicionales tras normalizar mayúsculas/espacios. Se conservó una fila por texto normalizado antes del split; el split fue estratificado 75/25 con semilla 42.", "BodyES"))
 story.append(P("Comparación en el mismo split", "H2ES"))
 rows = [[P("Pipeline", "CellHeadES"), P("F1 macro", "CellHeadES"), P("Exactitud", "CellHeadES")]]
@@ -101,7 +104,7 @@ for _, row in metrics.iterrows():
     rows.append([P(name_display.get(row.model, str(row.model)), "CellES"),
                  P(f"{row.f1_macro:.6f}", "CellES"), P(f"{row.accuracy:.6f}", "CellES")])
 tbl = Table(rows, colWidths=[4.2*inch,1.2*inch,1.2*inch], repeatRows=1)
-tbl.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,0),navy), ("ROWBACKGROUNDS",(0,1),(-1,-1),[colors.white,pale]), ("GRID",(0,0),(-1,-1),0.4,colors.HexColor("#d6e0e5")), ("VALIGN",(0,0),(-1,-1),"MIDDLE"), ("ALIGN",(1,1),(-1,-1),"RIGHT"), ("TOPPADDING",(0,0),(-1,-1),5), ("BOTTOMPADDING",(0,0),(-1,-1),5)]))
+tbl.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,0),navy), ("ROWBACKGROUNDS",(0,1),(-1,-1),[colors.white,pale]), ("GRID",(0,0),(-1,-1),0.4,colors.HexColor("#bbbbbb")), ("VALIGN",(0,0),(-1,-1),"MIDDLE"), ("ALIGN",(1,1),(-1,-1),"RIGHT"), ("TOPPADDING",(0,0),(-1,-1),5), ("BOTTOMPADDING",(0,0),(-1,-1),5)]))
 story.append(tbl)
 story.append(Spacer(1, 4))
 story.append(P(f"Resultado: {name_display.get(selected, selected)} fue el mejor en esta partición. En spam, precision={spam['precision']:.3f}, recall={spam['recall']:.3f} y F1={spam['f1']:.3f}; quedan 9 falsos negativos y 14 falsos positivos.", "BodyES"))

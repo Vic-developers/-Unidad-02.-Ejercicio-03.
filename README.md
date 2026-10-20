@@ -2,7 +2,7 @@
 
 Proyecto reproducible de detección de SMS no deseados con el corpus SMS Spam Collection de UCI. La pregunta es: **¿cómo se compara TF-IDF con Complement Naive Bayes y regresión logística para distinguir SMS legítimos (ham) de spam en una partición sin textos duplicados entre entrenamiento y prueba?**
 
-Autor académico: Victor E. Lorenzo  
+Autor académico: Victor Elvis Lorenzo  
 Repositorio de entrega: <https://github.com/Vic-developers/-Unidad-02.-Ejercicio-03..>
 
 ## Resultados de esta ejecución
