@@ -74,12 +74,12 @@ def footer(canvas, doc):
 doc = SimpleDocTemplate(str(OUT), pagesize=letter, rightMargin=0.58*inch,
     leftMargin=0.58*inch, topMargin=0.5*inch, bottomMargin=0.58*inch,
     title="Ejercicio 03 - Corpus público y clasificador reproducible",
-    author="Edwin Ramón José Nolasco")
+    author="Victor E. Lorenzo")
 story = []
 
 story.append(P("Ejercicio 03", "TitleES"))
 story.append(P("Corpus público y clasificador de texto reproducible", "SubES"))
-story.append(P("Autor: Edwin Ramón José Nolasco &nbsp;&nbsp; | &nbsp;&nbsp; Ejecución: 20 octubre 2026", "SmallES"))
+story.append(P("Autor: Victor E. Lorenzo &nbsp;&nbsp; | &nbsp;&nbsp; Ejecución: 20 octubre 2026", "SmallES"))
 story.append(P('Repositorio de entrega: <link href="https://github.com/Vic-developers/-Unidad-02.-Ejercicio-03.." color="#087e8b">github.com/Vic-developers/-Unidad-02.-Ejercicio-03..</link>.', "SmallES"))
 story.append(Spacer(1, 5))
 story.append(P("Pregunta", "H2ES"))
