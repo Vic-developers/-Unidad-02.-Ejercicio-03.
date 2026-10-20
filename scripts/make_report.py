@@ -47,13 +47,13 @@ navy, teal, pale, grey, orange = (colors.HexColor("#202020"), colors.HexColor("#
 styles = getSampleStyleSheet()
 styles.add(ParagraphStyle(name="TitleES", fontName=BOLD, fontSize=24, leading=29,
     textColor=navy, alignment=TA_LEFT, spaceAfter=7))
-styles.add(ParagraphStyle(name="SubES", fontName=BODY, fontSize=9, leading=13,
-    textColor=grey, spaceAfter=8))
+styles.add(ParagraphStyle(name="SubES", fontName=BODY, fontSize=9, leading=18,
+    textColor=grey, alignment=TA_JUSTIFY, spaceAfter=8))
 styles.add(ParagraphStyle(name="H2ES", fontName=BOLD, fontSize=12, leading=15,
     textColor=teal, spaceBefore=7, spaceAfter=4))
-styles.add(ParagraphStyle(name="BodyES", fontName=BODY, fontSize=9.1, leading=12.6,
+styles.add(ParagraphStyle(name="BodyES", fontName=BODY, fontSize=9.1, leading=18.2,
     textColor=navy, alignment=TA_JUSTIFY, spaceAfter=4))
-styles.add(ParagraphStyle(name="SmallES", fontName=BODY, fontSize=7.8, leading=10.2,
+styles.add(ParagraphStyle(name="SmallES", fontName=BODY, fontSize=7.8, leading=15.6,
     textColor=grey, alignment=TA_JUSTIFY, spaceAfter=2))
 styles.add(ParagraphStyle(name="CellES", fontName=BODY, fontSize=8.1, leading=10,
     textColor=navy, alignment=TA_JUSTIFY))
@@ -73,7 +73,7 @@ def footer(canvas, doc):
     canvas.line(0.55 * inch, 0.43 * inch, 7.95 * inch, 0.43 * inch)
     canvas.setFont(BODY, 7.5)
     canvas.setFillColor(grey)
-    canvas.drawString(0.57 * inch, 0.25 * inch, "INF8239 · Ejercicio 03 · UCI SMS Spam Collection")
+    canvas.drawString(0.57 * inch, 0.25 * inch, "INF8239 · UCI SMS Spam Collection")
     canvas.drawRightString(7.93 * inch, 0.25 * inch, f"{doc.page}")
     canvas.restoreState()
 
@@ -83,8 +83,7 @@ doc = SimpleDocTemplate(str(OUT), pagesize=letter, rightMargin=0.58*inch,
     author="Victor Elvis Lorenzo")
 story = []
 
-story.append(P("Ejercicio 03", "TitleES"))
-story.append(P("Corpus público y clasificador de texto reproducible", "SubES"))
+story.append(P("Corpus público y clasificador de texto reproducible", "TitleES"))
 story.append(P("Autor: Victor Elvis Lorenzo &nbsp;&nbsp; | &nbsp;&nbsp; Ejecución: 20 octubre 2026", "SmallES"))
 story.append(P('Repositorio de entrega: <link href="https://github.com/Vic-developers/-Unidad-02.-Ejercicio-03.." color="#000000">github.com/Vic-developers/-Unidad-02.-Ejercicio-03..</link>.', "SmallES"))
 story.append(Spacer(1, 5))
@@ -115,10 +114,9 @@ story.append(Image(str(ROOT / "reports/corpus_profile.png"), width=6.75*inch, he
 
 story.append(PageBreak())
 story.append(P("Evaluación y lectura de errores", "TitleES"))
-story.append(P("Resultados observados en una nueva ejecución local; las cifras del informe previo no se reutilizaron como resultados ejecutados.", "SubES"))
 story.append(P("Evidencia de la prueba", "H2ES"))
 story.append(P(f"El holdout incluye 1,290 mensajes: 1,129 ham y 161 spam. Matriz (filas = clase real ham/spam; columnas = predicción ham/spam): [[1115, 14], [9, 152]]. El F1 macro de regresión logística es {selected_row['f1_macro']:.6f}, frente a {metrics.loc[metrics.model=='complement_nb','f1_macro'].iloc[0]:.6f} para Complement Naive Bayes y 0.466722 para Dummy.", "BodyES"))
-story.append(Image(str(ROOT / "reports/confusion_matrix.png"), width=4.75*inch, height=3.02*inch, hAlign="CENTER"))
+story.append(Image(str(ROOT / "reports/confusion_matrix.png"), width=4.1*inch, height=2.61*inch, hAlign="CENTER"))
 story.append(P("Revisión cualitativa", "H2ES"))
 false_positive = int(confusion[0, 1])
 false_negative = int(confusion[1, 0])
