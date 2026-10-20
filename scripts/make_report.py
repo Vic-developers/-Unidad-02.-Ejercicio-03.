@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import io
 from pathlib import Path
 
 import pandas as pd
@@ -14,6 +15,8 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (Image, KeepTogether, PageBreak, Paragraph, SimpleDocTemplate,
                                 Spacer, Table, TableStyle)
+from reportlab.pdfgen import canvas as pdf_canvas
+from pypdf import PdfReader, PdfWriter
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "Entrega_Ejercicio_03.pdf"
@@ -133,4 +136,48 @@ story.append(P("El README documenta instalación, dependencias, pruebas y ejecuc
 story.append(P("Fuentes: UCI Machine Learning Repository, SMS Spam Collection (CC BY 4.0), https://archive.ics.uci.edu/dataset/228/sms+spam+collection. Almeida, Hidalgo y Yamakami (2011), DOI 10.1145/2034691.2034742. Consulte README.md y docs/AI_USAGE.md para instrucciones y declaración ampliada.", "SmallES"))
 
 doc.build(story, onFirstPage=footer, onLaterPages=footer)
-print(f"PDF creado: {OUT}")
+
+# Portada institucional centrada, con el escudo suministrado para esta entrega.
+cover_buffer = io.BytesIO()
+cover = pdf_canvas.Canvas(cover_buffer, pagesize=letter)
+page_width, page_height = letter
+seal = ROOT / "assets/uasd_seal.png"
+seal_width, seal_height = 1.12 * inch, 1.40 * inch
+cover.drawImage(str(seal), (page_width-seal_width)/2, 9.12*inch,
+                width=seal_width, height=seal_height, preserveAspectRatio=True,
+                anchor="c", mask="auto")
+cover.setFillColor(colors.HexColor("#202020"))
+cover.setFont(BOLD, 14)
+cover.drawCentredString(page_width/2, 8.58*inch,
+                        "UNIVERSIDAD AUTÓNOMA DE SANTO DOMINGO (UASD)")
+
+def cover_section(label: str, value: str, y: float, value_size: float = 13):
+    cover.setFont(BOLD, 10)
+    cover.drawCentredString(page_width/2, y, label)
+    cover.setFont(BODY, value_size)
+    cover.drawCentredString(page_width/2, y-20, value)
+
+cover_section("ASIGNATURA", "Ciencia de Datos II", 7.42*inch, 14)
+cover_section("TEMA", "Unidad 02 - Ejercicio 03", 6.62*inch, 14)
+cover.setFont(BODY, 12)
+cover.drawCentredString(page_width/2, 6.05*inch,
+                        "Corpus público y clasificador de texto reproducible")
+cover_section("PARTICIPANTE", "Victor Elvis Lorenzo", 4.86*inch, 13)
+cover_section("PROFESOR", "Edwin Ramón José Nolasco", 3.80*inch, 13)
+cover.showPage()
+cover.save()
+cover_buffer.seek(0)
+
+body_reader = PdfReader(str(OUT))
+cover_reader = PdfReader(cover_buffer)
+writer = PdfWriter()
+writer.add_page(cover_reader.pages[0])
+for page in body_reader.pages:
+    writer.add_page(page)
+writer.add_metadata({"/Title": "Ejercicio 03 - Corpus público y clasificador de texto reproducible",
+                     "/Author": "Victor Elvis Lorenzo"})
+temp_out = OUT.with_name(OUT.stem + ".tmp.pdf")
+with temp_out.open("wb") as target:
+    writer.write(target)
+temp_out.replace(OUT)
+print(f"PDF creado con portada: {OUT}")

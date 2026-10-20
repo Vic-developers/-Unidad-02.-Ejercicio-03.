@@ -3,5 +3,7 @@ scikit-learn>=1.5,<2
 matplotlib>=3.9,<4
 joblib>=1.4,<2
 reportlab>=4.2,<5
+pypdf>=5,<7
+python-docx>=1.1,<2
 pytest>=8.3,<9
 jupyter>=1.1,<2

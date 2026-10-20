@@ -32,6 +32,7 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 pytest -q
 python scripts/run_analysis.py
+python scripts/make_report.py
 jupyter notebook notebooks/ejercicio_03_sms.ipynb
 ```
 
@@ -44,7 +45,10 @@ data/raw/                 ZIP oficial UCI con su archivo descriptivo
 docs/                     ficha del conjunto, fuentes y declaración de IA
 notebooks/                notebook ejecutado con salidas guardadas
 reports/                  métricas, matriz, auditoría, análisis de errores y gráficos
+assets/                   escudo institucional usado en la portada del PDF
 scripts/run_analysis.py   punto de entrada reproducible
+scripts/make_report.py    genera el PDF académico con portada y resultados
+scripts/build_report_docx.py genera la versión editable en Word
 src/nlp_project.py        carga, auditoría, limpieza, pipelines y evaluación
 tests/                    pruebas del contrato de datos y la fuga por duplicados
 requirements.txt          dependencias de ejecución y prueba
